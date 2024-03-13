@@ -1,19 +1,19 @@
-﻿<Window x:Class="CompMath_Lab3_Approximation.MainWindow"
+﻿<Window x:Class="CompMath_Lab3_Approximation.View.ApproximationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:oxy="http://oxyplot.org/wpf"
-        xmlns:local="clr-namespace:CompMath_Lab3_Approximation"
+        xmlns:local="clr-namespace:CompMath_Lab3_Approximation.View"
+        xmlns:ScottPlot="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="450" Width="800">
+        Loaded="Window_Loaded"
+        Title="ApproximationWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <oxy:PlotView x:Name="Graphic" Grid.Column="0" ></oxy:PlotView>
-        
+        <ScottPlot:WpfPlot x:Name="Graphics"></ScottPlot:WpfPlot>
     </Grid>
 </Window>
