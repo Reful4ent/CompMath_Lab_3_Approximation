@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CompMath_Lab3_Approximation.ViewModel;
 
 namespace CompMath_Lab3_Approximation.View
 {
@@ -23,6 +24,8 @@ namespace CompMath_Lab3_Approximation.View
         public ApproximationWindow()
         {
             InitializeComponent();
+            DataContext = new ApproximationVM();
+            //if (DataContext is ApproximationVM approximationVm){}
         }
 
         private void ScotPlotStyle()

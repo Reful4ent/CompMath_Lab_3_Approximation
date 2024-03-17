@@ -24,6 +24,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50px"></RowDefinition>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50px"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" x:Name="Settings__Table">
                     <Grid.ColumnDefinitions>
@@ -33,17 +34,26 @@
                     <TextBlock Grid.Column="0"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center">Введите количество переменных: </TextBlock>
-                    <TextBox Grid.Column="1" x:Name="Rows__count" 
+                    <TextBox Grid.Column="1" x:Name="Rows__Count" 
                              MaxLength="2"
                              MaxHeight="20px"
                              MinWidth="45px"
                              TextAlignment="Center"
                              HorizontalAlignment="Center"></TextBox>
                 </Grid>
-                <Grid Grid.Row="1" x:Name="Table__inner">
+                <Grid Grid.Row="1" x:Name="Table__Inner">
                     <!-- Добавить привязку к таблице -->
                     <DataGrid x:Name="Table__OY"></DataGrid>
                 </Grid>
+                <Grid Grid.Row="2">
+                    <Button Command="{Binding I}">Создать таблицу</Button>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" x:Name="Settings__Methods">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock HorizontalAlignment="Center">Выберите метод:</TextBlock>
+                    <ComboBox ItemsSource="{}" SelectedIndex="{Binding IndexMethod}"></ComboBox>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>
