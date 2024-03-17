@@ -8,12 +8,43 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded"
-        Title="ApproximationWindow" Height="450" Width="800">
+        Title="ApproximationWindow" Height="450" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ScottPlot:WpfPlot x:Name="Graphics"></ScottPlot:WpfPlot>
+        <ScottPlot:WpfPlot x:Name="Graphics" Grid.Column="0"></ScottPlot:WpfPlot>
+        <Grid Grid.Column="1" x:Name="Settings">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50px"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" x:Name="Settings__Table">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">Введите количество переменных: </TextBlock>
+                    <TextBox Grid.Column="1" x:Name="Rows__count" 
+                             MaxLength="2"
+                             MaxHeight="20px"
+                             MinWidth="45px"
+                             TextAlignment="Center"
+                             HorizontalAlignment="Center"></TextBox>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Table__inner">
+                    <!-- Добавить привязку к таблице -->
+                    <DataGrid x:Name="Table__OY"></DataGrid>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
