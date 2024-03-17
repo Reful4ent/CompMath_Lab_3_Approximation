@@ -23,6 +23,7 @@
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50px"></RowDefinition>
+                    <RowDefinition Height="20px"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition Height="50px"></RowDefinition>
                 </Grid.RowDefinitions>
@@ -39,14 +40,36 @@
                              MaxHeight="20px"
                              MinWidth="45px"
                              TextAlignment="Center"
-                             HorizontalAlignment="Center"></TextBox>
+                             HorizontalAlignment="Center"
+                             Text="{Binding CountOfElements}"></TextBox>
                 </Grid>
-                <Grid Grid.Row="1" x:Name="Table__Inner">
+                <Grid Grid.Row="1">
+                    <DataGrid>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="X" Width="1*" CanUserResize="False"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Y" Width="1*" CanUserResize="False"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                <Grid Grid.Row="2" x:Name="Table__Inner">
                     <!-- Добавить привязку к таблице -->
-                    <DataGrid x:Name="Table__OY"></DataGrid>
+                    <ListBox x:Name="Table__OY" ItemsSource="{Binding PointsList}" SelectedIndex="{Binding IndexElement}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="115.3px"></ColumnDefinition>
+                                        <ColumnDefinition Width="115.3px"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0" Text="{Binding X}"></TextBox>
+                                    <TextBox Grid.Column="1" Text="{Binding Y}"></TextBox>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
-                <Grid Grid.Row="2">
-                    <Button Command="{Binding I}">Создать таблицу</Button>
+                <Grid Grid.Row="3">
+                    <Button Command="{Binding SetTableCommand}">Создать таблицу</Button>
                 </Grid>
             </Grid>
             <Grid Grid.Column="1" x:Name="Settings__Methods">
