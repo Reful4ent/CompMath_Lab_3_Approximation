@@ -17,7 +17,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
         private int indexElement = 0;
         private ObservableCollection<Points> pointsList;
 
-        public Action<int>? countOfRowsChanged;
+        public Action<Func<double, double>>? LagrangeAction;
 
         public ApproximationVM()
         {
@@ -52,7 +52,6 @@ namespace CompMath_Lab3_Approximation.ViewModel
                 for (int i = 0; i < countOfElements; i++)
                     list.Add(new Points());
                 PointsList = new ObservableCollection<Points>(list);
-                //countOfRowsChanged?.Invoke(CountOfElements);
             }
         }
 
@@ -68,6 +67,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
                 tempY[i] = PointsList[i].Y;
             }
             tableOY.SetTable(tempX, tempY);
+            LagrangeAction?.Invoke(LagrangeMethod.CreateLagrange(tableOY));
         }
     }
 }

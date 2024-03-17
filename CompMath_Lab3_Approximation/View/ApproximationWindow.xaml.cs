@@ -26,6 +26,10 @@ namespace CompMath_Lab3_Approximation.View
         {
             InitializeComponent();
             DataContext = new ApproximationVM();
+            if (DataContext is ApproximationVM approximationVm)
+            {
+                approximationVm.LagrangeAction += ScotPlotDraw;
+            }
         }
 
         private void ScotPlotStyle()
@@ -40,6 +44,11 @@ namespace CompMath_Lab3_Approximation.View
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ScotPlotStyle();
+        }
+
+        private void ScotPlotDraw(Func<double, double> func)
+        {
+            Graphics.Plot.Add.Function(func);
         }
     }
 }
