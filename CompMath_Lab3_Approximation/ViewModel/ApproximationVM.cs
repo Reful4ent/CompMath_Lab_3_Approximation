@@ -17,7 +17,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
         private int indexElement = 0;
         private ObservableCollection<Points> pointsList;
 
-        public Action<Func<double, double>>? LagrangeAction;
+        public Action<Func<double, double>, double[,]>? LagrangeAction;
 
         public ApproximationVM()
         {
@@ -92,7 +92,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
         {
             switch (indexMethod)
             {
-                case 0: LagrangeAction?.Invoke(LagrangeMethod.CreateLagrange(tableOY.GetX(),tableOY.GetY())); break;
+                case 0: LagrangeAction?.Invoke(LagrangeMethod.CreateLagrange(tableOY.GetX(),tableOY.GetY()),tableOY.Table); break;
                 default: break;
             }
         }

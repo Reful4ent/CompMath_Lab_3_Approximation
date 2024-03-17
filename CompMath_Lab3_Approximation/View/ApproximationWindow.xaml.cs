@@ -52,9 +52,11 @@ namespace CompMath_Lab3_Approximation.View
         /// Отрисовка скотплота
         /// </summary>
         /// <param name="func"></param>
-        private void ScotPlotDraw(Func<double, double> func)
+        private void ScotPlotDraw(Func<double, double> func,double[,] table)
         {
             Graphics.Plot.Add.Function(func);
+            for (int i = 0; i < table.GetUpperBound(1)+1; i++)
+                Graphics.Plot.Add.Marker(table[0, i], table[1, i]);
         }
     }
 }
