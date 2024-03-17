@@ -31,7 +31,9 @@ namespace CompMath_Lab3_Approximation.View
                 approximationVm.LagrangeAction += ScotPlotDraw;
             }
         }
-
+        /// <summary>
+        /// Стандартные настройки для скотплота
+        /// </summary>
         private void ScotPlotStyle()
         {
             Graphics.Plot.Add.VerticalLine(0, 1, ScottPlot.Color.FromHex("#000000"));
@@ -45,7 +47,11 @@ namespace CompMath_Lab3_Approximation.View
         {
             ScotPlotStyle();
         }
-
+        
+        /// <summary>
+        /// Отрисовка скотплота
+        /// </summary>
+        /// <param name="func"></param>
         private void ScotPlotDraw(Func<double, double> func)
         {
             Graphics.Plot.Add.Function(func);

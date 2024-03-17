@@ -11,7 +11,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
 {
     public class ApproximationVM : BaseVM
     {
-        private ITableOY tableOY;
+        private ITable tableOY;
         private int indexMethod = 0;
         private int countOfElements = 0;
         private int indexElement = 0;
@@ -21,7 +21,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
 
         public ApproximationVM()
         {
-            tableOY = new TableOY();
+            tableOY = new TableXY();
         }
         public int IndexMethod
         {
@@ -42,6 +42,8 @@ namespace CompMath_Lab3_Approximation.ViewModel
 
         }
 
+        public Array MethodsArray => Methods.methods;
+
         public int CountOfElements
         {
             get => countOfElements;
@@ -55,19 +57,44 @@ namespace CompMath_Lab3_Approximation.ViewModel
             }
         }
 
+        /// <summary>
+        /// Вызывает создание и заполнение таблицы
+        /// </summary>
         public Command SetTableCommand => Command.Create(SetTable);
-
+        
         public void SetTable()
         {
-            float[] tempX = new float[PointsList.Count];
-            float[] tempY = new float[PointsList.Count];
+            double[] tempX = new double[PointsList.Count];
+            double[] tempY = new double[PointsList.Count];
             for (int i = 0; i < PointsList.Count; i++)
             {
                 tempX[i] = PointsList[i].X;
                 tempY[i] = PointsList[i].Y;
             }
             tableOY.SetTable(tempX, tempY);
-            LagrangeAction?.Invoke(LagrangeMethod.CreateLagrange(tableOY));
+        }
+        
+        /// <summary>
+        /// Вызывает очистку таблицы
+        /// </summary>
+        public Command ClearTableCommand => Command.Create((() =>
+        {
+            tableOY.ClearTable();
+            CountOfElements = 0;
+        }));
+        
+        /// <summary>
+        /// Вызывает метод необходимый метод (Лагранжа и тд)
+        /// </summary>
+        public Command CallMethodCommand => Command.Create(CallMethod);
+
+        public void CallMethod()
+        {
+            switch (indexMethod)
+            {
+                case 0: LagrangeAction?.Invoke(LagrangeMethod.CreateLagrange(tableOY.GetX(),tableOY.GetY())); break;
+                default: break;
+            }
         }
     }
 }

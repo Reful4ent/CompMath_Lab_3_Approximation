@@ -26,6 +26,7 @@
                     <RowDefinition Height="20px"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition Height="50px"></RowDefinition>
+                    <RowDefinition Height="50px"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" x:Name="Settings__Table">
                     <Grid.ColumnDefinitions>
@@ -71,12 +72,20 @@
                 <Grid Grid.Row="3">
                     <Button Command="{Binding SetTableCommand}">Создать таблицу</Button>
                 </Grid>
+                <Grid Grid.Row="4">
+                    <Button Command="{Binding ClearTableCommand}">Очистить таблицу</Button>
+                </Grid>
             </Grid>
             <Grid Grid.Column="1" x:Name="Settings__Methods">
-                <StackPanel Orientation="Vertical">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50px"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Row="0">
                     <TextBlock HorizontalAlignment="Center">Выберите метод:</TextBlock>
-                    <ComboBox ItemsSource="{}" SelectedIndex="{Binding IndexMethod}"></ComboBox>
+                    <ComboBox ItemsSource="{Binding MethodsArray}" SelectedIndex="{Binding IndexMethod}"></ComboBox>
                 </StackPanel>
+                <Button Grid.Row="1" Command="{Binding CallMethodCommand}">Использовать метод</Button>
             </Grid>
         </Grid>
     </Grid>

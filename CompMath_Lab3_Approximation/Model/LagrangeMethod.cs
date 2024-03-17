@@ -2,27 +2,37 @@
 
 public class LagrangeMethod
 {
-    public static Func<double,double> CreateLagrange(ITableOY table)
+    /// <summary>
+    /// Создает полином Лагранжа
+    /// </summary>
+    /// <param name="X">массив X из таблицы OY</param>
+    /// <param name="Y">массив Y из таблицы OY</param>
+    /// <returns></returns>
+    public static Func<double,double> CreateLagrange(double[] X, double[] Y)
     {
         List<Func<double, double>> basicPolynomial = new List<Func<double, double>>();
-        float[] tempX = new float[table.Table.GetUpperBound(1) + 1];
+        double[] tempX = X;
         
-        for (int i = 0; i < table.Table.GetUpperBound(1) + 1; i++)
-            tempX[i] = table.Table[0, i];
-        for (int i = 0; i < table.Table.GetUpperBound(1) + 1; i++)
+        for (int i = 0; i < tempX.Length; i++)
             basicPolynomial.Add(CreateBasicPolynomial(tempX,i));
         
         Func<double, double> lagrangePolynomial = new Func<double, double>((x) =>
         {
             double result = 0;
             for (int i = 0; i < tempX.Length; i++)
-                result += table.Table[1, i] * basicPolynomial[i].Invoke(x);
+                result += Y[i] * basicPolynomial[i].Invoke(x);
             return result;
         });
         return lagrangePolynomial;
     }
-
-    private static Func<double,double> CreateBasicPolynomial(float[] X, int i)
+    
+    /// <summary>
+    /// Создает промежуточный полином
+    /// </summary>
+    /// <param name="X">массив X из таблицы OY</param>
+    /// <param name="i">индекс промежуточного полиндрома</param>
+    /// <returns></returns>
+    private static Func<double,double> CreateBasicPolynomial(double[] X, int i)
     {
         Func<double, double> basicPolynomial = new Func<double, double>((x) =>
         {
