@@ -42,7 +42,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
 
         }
 
-        public Array MethodsArray => Methods.methods;
+        public Array MethodsArray => MethodsList.methods;
 
         public int CountOfElements
         {
@@ -93,6 +93,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
             switch (indexMethod)
             {
                 case 0: LagrangeAction?.Invoke(LagrangeMethod.CreateLagrange(tableOY.GetX(),tableOY.GetY()),tableOY.Table); break;
+                case 2: 
                 default: break;
             }
         }

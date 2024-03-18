@@ -1,6 +1,6 @@
 ﻿namespace CompMath_Lab3_Approximation.Model;
 
-public static class Methods
+public static class MethodsList
 {
     /// <summary>
     /// Список методов
