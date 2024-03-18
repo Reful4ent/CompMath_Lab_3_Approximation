@@ -20,7 +20,6 @@ public class SmoothPolMethod
                 freeMembers[k] += Y[i] * Math.Pow(X[i], k);
         }
         freeMembers = GaussMethod.GaussWithElement(MatrixA,freeMembers);
-        Matrix.PrintMatrix(MatrixA,freeMembers);
         Func<double, double> smoothPolynomial = new Func<double, double>((x) =>
         {
             double Func = 0;

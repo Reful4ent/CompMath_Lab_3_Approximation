@@ -15,6 +15,8 @@ namespace CompMath_Lab3_Approximation.ViewModel
         private int indexMethod = 0;
         private int countOfElements = 0;
         private int indexElement = 0;
+        private int indexDegree = 0;
+        private int[] Degrees = { 1, 2, 3 };
         private ObservableCollection<Points> pointsList;
 
         public Action<Func<double, double>, double[,]>? DrowAction;
@@ -34,6 +36,12 @@ namespace CompMath_Lab3_Approximation.ViewModel
             get => indexElement;
             set => Set(ref indexElement, value);
         }
+        
+        public int IndexDegree
+        {
+            get => indexDegree;
+            set => Set(ref indexDegree, value);
+        }
 
         public ObservableCollection<Points> PointsList
         {
@@ -43,6 +51,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
         }
 
         public Array MethodsArray => MethodsList.methods;
+        public Array DegreesArray => Degrees;
 
         public int CountOfElements
         {
@@ -93,7 +102,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
             switch (indexMethod)
             {
                 case 0: DrowAction?.Invoke(LagrangeMethod.CreateLagrange(tableOY.GetX(),tableOY.GetY()),tableOY.Table); break;
-                case 2: DrowAction?.Invoke(SmoothPolMethod.CreateSmooth(tableOY.GetX(),tableOY.GetY(),1),tableOY.Table); break;
+                case 2: DrowAction?.Invoke(SmoothPolMethod.CreateSmooth(tableOY.GetX(),tableOY.GetY(),IndexDegree+1),tableOY.Table); break;
                 default: break;
             }
         }

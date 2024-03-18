@@ -79,13 +79,19 @@
             <Grid Grid.Column="1" x:Name="Settings__Methods">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                     <RowDefinition Height="50px"></RowDefinition>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Vertical" Grid.Row="0">
                     <TextBlock HorizontalAlignment="Center">Выберите метод:</TextBlock>
                     <ComboBox ItemsSource="{Binding MethodsArray}" SelectedIndex="{Binding IndexMethod}"></ComboBox>
                 </StackPanel>
-                <Button Grid.Row="1" Command="{Binding CallMethodCommand}">Использовать метод</Button>
+                
+                <StackPanel Grid.Row="1" x:Name="ForSmoothMethod">
+                    <TextBlock HorizontalAlignment="Center">Выберите степень:</TextBlock>
+                    <ComboBox ItemsSource="{Binding DegreesArray}" SelectedIndex="{Binding IndexDegree}"></ComboBox>
+                </StackPanel>
+                <Button Grid.Row="2" Command="{Binding CallMethodCommand}">Использовать метод</Button>
             </Grid>
         </Grid>
     </Grid>
