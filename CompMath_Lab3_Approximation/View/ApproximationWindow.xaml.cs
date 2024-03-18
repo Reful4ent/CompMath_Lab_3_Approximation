@@ -28,7 +28,7 @@ namespace CompMath_Lab3_Approximation.View
             DataContext = new ApproximationVM();
             if (DataContext is ApproximationVM approximationVm)
             {
-                approximationVm.LagrangeAction += ScotPlotDraw;
+                approximationVm.DrowAction += ScotPlotDraw;
             }
         }
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using CompMath_Lab_2;
+﻿using System.Windows.Documents;
+using CompMath_Lab_2;
 
 namespace CompMath_Lab3_Approximation.Model;
 
@@ -19,15 +20,18 @@ public class SmoothPolMethod
                 freeMembers[k] += Y[i] * Math.Pow(X[i], k);
         }
         freeMembers = GaussMethod.GaussWithElement(MatrixA,freeMembers);
+        Matrix.PrintMatrix(MatrixA,freeMembers);
         Func<double, double> smoothPolynomial = new Func<double, double>((x) =>
         {
             double Func = 0;
             for (int i = 0; i < freeMembers.Length; i++)
             {
-                Func += Math.Pow(x, X.Length - (i+1)) * freeMembers[i];
+                Func += Math.Pow(x,freeMembers.Length-(1+i)) * freeMembers[i];
             }
             return Func;
         });
         return smoothPolynomial;
     }
+    
+    
 }
