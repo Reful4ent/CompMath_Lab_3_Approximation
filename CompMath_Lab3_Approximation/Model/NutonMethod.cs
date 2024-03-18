@@ -21,10 +21,10 @@ namespace CompMath_Lab3_Approximation.Model
             Func<double, double> NutonPolynomial = new Func<double, double>((x) =>
             {
                 double tmp = Y[0];
-                for(int i = 1; i < X.Length + 1; i++)
+                for(int i = 1; i < X.Length; i++)
                 {
                     double temp = 1;
-                    for(int j = 0;  j < Y.Length + 1;j++)
+                    for(int j = 0;  j < Y.Length;j++)
                         tmp *= x-X[j];
                     tmp += result[i - 1] * temp;
                 }
