@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompMath_Lab3_Approximation.Model
 {
-    public class Nuton
+    public class NutonMethod
     {
     }
 }
