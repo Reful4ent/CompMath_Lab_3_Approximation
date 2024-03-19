@@ -15,20 +15,20 @@ namespace CompMath_Lab3_Approximation.Model
         {
             TableXY tableXY = new TableXY();
             tableXY.SetTable(X,Y);
-            double[] result = new double[X.Length+1];
-            for (int i = 0; i < X.Length + 1; i++)
-                result[i] = DividedDifferences(tableXY, i);
+            double[] divDiff = new double[X.Length];
+            for (int i = 1; i < X.Length; i++)
+                divDiff[i] = DividedDifferences(tableXY, i);
             Func<double, double> NutonPolynomial = new Func<double, double>((x) =>
             {
-                double tmp = Y[0];
-                for(int i = 1; i < X.Length; i++)
+                double result = Y[0];
+                for (int k = 0; k < Y.Length; k++)
                 {
-                    double temp = 1;
-                    for(int j = 0;  j < Y.Length;j++)
-                        tmp *= x-X[j];
-                    tmp += result[i - 1] * temp;
+                    double mul = 1;
+                    for (int j = 0; j < k; j++)
+                        mul *= x-X[j];
+                    result += divDiff[k] * mul;
                 }
-                return x;
+                return result;
             });
             return NutonPolynomial;
         }
@@ -36,18 +36,18 @@ namespace CompMath_Lab3_Approximation.Model
         {
             double[] x = tableXY.GetX();
             double[] y = tableXY.GetY();
-            double tmp = 0;
-            for(int i = 0; i < k; i++)
+            double result = 0;
+            for (int j = 0; j < k+1; j++)
             {
-                double n = 1;
-                for(int j = 0; j < k; j++)
+                double mul = 1;
+                for(int i = 0; i < k+1; i++)
                 {
-                    if (i != j)
-                        n *= x[i] - x[j];
+                    if(i != j)
+                        mul *= x[j] - x[i];
                 }
-                tmp += y[i] / n;
+                result += y[j]/mul;
             }
-            return tmp;
+            return result;
         }
     }
 }
