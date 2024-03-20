@@ -20,6 +20,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
         private ObservableCollection<Points> pointsList;
 
         public Action<Func<double, double>, double[,]>? DrowAction;
+        public Action<int>? ErrorProgram;
 
         public ApproximationVM()
         {
@@ -73,6 +74,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
         
         public void SetTable()
         {
+            
             double[] tempX = new double[PointsList.Count];
             double[] tempY = new double[PointsList.Count];
             for (int i = 0; i < PointsList.Count; i++)
@@ -80,7 +82,8 @@ namespace CompMath_Lab3_Approximation.ViewModel
                 tempX[i] = PointsList[i].X;
                 tempY[i] = PointsList[i].Y;
             }
-            tableOY.SetTable(tempX, tempY);
+            if(!tableOY.SetTable(tempX, tempY))
+                ErrorProgram?.Invoke(0);
         }
         
         /// <summary>
@@ -88,6 +91,11 @@ namespace CompMath_Lab3_Approximation.ViewModel
         /// </summary>
         public Command ClearTableCommand => Command.Create((() =>
         {
+            if (tableOY.Table == null)
+            {
+                ErrorProgram?.Invoke(1);
+                return;
+            }
             tableOY.ClearTable();
             CountOfElements = 0;
         }));
@@ -99,6 +107,11 @@ namespace CompMath_Lab3_Approximation.ViewModel
 
         public void CallMethod()
         {
+            if (tableOY.Table == null)
+            {
+                ErrorProgram?.Invoke(1);
+                return;
+            }
             switch (indexMethod)
             {
                 case 0: DrowAction?.Invoke(LagrangeMethod.CreateLagrange(tableOY.GetX(),tableOY.GetY()),tableOY.Table); break;

@@ -16,14 +16,43 @@ namespace CompMath_Lab3_Approximation.Model
         {
             if (x.Length != y.Length)
                 return false;
+            if (!(checkIncrease(x) && CheckDuplicate(x)))
+                return false;
+            
             Table = new double[2, x.Length];
             for (int i = 0; i < x.Length; i++)
                 Table[0, i] = x[i];
             for (int i = 0; i < x.Length; i++)
                 Table[1, i] = y[i];
+            
             return true;
         }
 
+        private bool checkIncrease(double[] x)
+        {
+            for (int i = 1; i < x.Length; i++)
+                if (x[i] < x[i - 1])
+                    return false;
+            
+            return true;
+        }
+        private bool CheckDuplicate(double[] x)
+        {
+            for (int i = 0; i < x.Length; i++)
+            {
+                for (int j = 0; j < x.Length; j++)
+                {
+                    if(i==j)
+                        continue;
+                    if (x[i] == x[j])
+                        return false;
+                }
+            }
+
+            return true;
+        }
+        
+        
         public void ClearTable() => Array.Clear(Table, 0, Table.Length);
 
         /// <summary>

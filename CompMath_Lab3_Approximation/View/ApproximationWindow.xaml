@@ -8,13 +8,20 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded"
-        Title="ApproximationWindow" Height="450" Width="1000">
+        Title="ApproximationWindow" Height="500" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ScottPlot:WpfPlot x:Name="Graphics" Grid.Column="0"></ScottPlot:WpfPlot>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="50px"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ScottPlot:WpfPlot x:Name="Graphics" Grid.Row="0"></ScottPlot:WpfPlot>
+            <Button Grid.Row="1" Click="ScotPlotClear">Очистить график</Button>
+        </Grid>
         <Grid Grid.Column="1" x:Name="Settings">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

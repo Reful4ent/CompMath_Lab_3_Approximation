@@ -29,6 +29,7 @@ namespace CompMath_Lab3_Approximation.View
             if (DataContext is ApproximationVM approximationVm)
             {
                 approximationVm.DrowAction += ScotPlotDraw;
+                approximationVm.ErrorProgram += OpenErrorWindow;
             }
         }
         /// <summary>
@@ -43,6 +44,11 @@ namespace CompMath_Lab3_Approximation.View
             Graphics.Refresh();
         }
 
+        private void OpenErrorWindow(int errorKey)
+        {
+            ErrorWindow errorWindow = new(errorKey);
+            errorWindow.ShowDialog();
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ScotPlotStyle();
@@ -57,6 +63,12 @@ namespace CompMath_Lab3_Approximation.View
             Graphics.Plot.Add.Function(func);
             for (int i = 0; i < table.GetUpperBound(1)+1; i++)
                 Graphics.Plot.Add.Marker(table[0, i], table[1, i]);
+        }
+
+        private void ScotPlotClear(object sender, RoutedEventArgs e)
+        {
+            Graphics.Plot.Clear();
+            ScotPlotStyle();
         }
     }
 }
