@@ -104,6 +104,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
                 case 0: DrowAction?.Invoke(LagrangeMethod.CreateLagrange(tableOY.GetX(),tableOY.GetY()),tableOY.Table); break;
                 case 1: DrowAction?.Invoke(NutonMethod.CreateNuton(tableOY.GetX(),tableOY.GetY()),tableOY.Table); break;
                 case 2: DrowAction?.Invoke(SmoothPolMethod.CreateSmooth(tableOY.GetX(),tableOY.GetY(),IndexDegree+1),tableOY.Table); break;
+                case 3: DrowAction?.Invoke(SplineMethod.CubicSplineInterpolation(tableOY.GetX(),tableOY.GetY()),tableOY.Table); break;
                 default: break;
             }
         }
