@@ -43,7 +43,7 @@ namespace CompMath_Lab3_Approximation.View
             Graphics.Plot.YLabel("Y");
             Graphics.Refresh();
         }
-
+        
         private void OpenErrorWindow(int errorKey)
         {
             ErrorWindow errorWindow = new(errorKey);
