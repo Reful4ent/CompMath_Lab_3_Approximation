@@ -1,5 +1,4 @@
-﻿using System.Windows.Documents;
-using CompMath_Lab_2;
+﻿using CompMath_Lab_2;
 
 namespace CompMath_Lab3_Approximation.Model;
 
