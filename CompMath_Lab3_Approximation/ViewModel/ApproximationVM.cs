@@ -16,7 +16,7 @@ namespace CompMath_Lab3_Approximation.ViewModel
         private int countOfElements = 0;
         private int indexElement = 0;
         private int indexDegree = 0;
-        private int[] Degrees = { 1, 2, 3 };
+        private int[] Degrees = { 1, 2, 3, 4 };
         private ObservableCollection<Points> pointsList;
 
         public Action<Func<double, double>, double[,]>? DrowAction;
