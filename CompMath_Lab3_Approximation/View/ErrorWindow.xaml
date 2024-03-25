@@ -8,7 +8,7 @@
         ResizeMode="NoResize"
         Icon="/View/Images/logo.png"
         WindowStartupLocation="CenterScreen"
-        Title="ErrorWindow" Height="300" Width="500">
+        Title="Ошибка" Height="300" Width="500">
     <Grid>
         <TextBlock x:Name="Error__Block"
                    TextWrapping="Wrap"

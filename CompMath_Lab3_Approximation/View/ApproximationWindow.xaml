@@ -9,7 +9,10 @@
         WindowStartupLocation="CenterScreen"
         Icon="/View/Images/logo.png"
         Loaded="Window_Loaded"
-        Title="ApproximationWindow" Height="500" Width="1000">
+        Title="Аппроксимация" Height="500" Width="1000">
+    <Window.Resources>
+        <ResourceDictionary Source="Styles/ApproximationStyles.xaml"></ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -21,7 +24,7 @@
                 <RowDefinition Height="50px"></RowDefinition>
             </Grid.RowDefinitions>
             <ScottPlot:WpfPlot x:Name="Graphics" Grid.Row="0"></ScottPlot:WpfPlot>
-            <Button Grid.Row="1" Click="ScotPlotClear">Очистить график</Button>
+            <Button Grid.Row="1" Click="ScotPlotClear" Style="{StaticResource Button_style}">Очистить график</Button>
         </Grid>
         <Grid Grid.Column="1" x:Name="Settings">
             <Grid.ColumnDefinitions>
@@ -77,10 +80,10 @@
                     </ListBox>
                 </Grid>
                 <Grid Grid.Row="3">
-                    <Button Command="{Binding SetTableCommand}">Создать таблицу</Button>
+                    <Button Command="{Binding SetTableCommand}" Style="{StaticResource Button_style}">Создать таблицу</Button>
                 </Grid>
                 <Grid Grid.Row="4">
-                    <Button Command="{Binding ClearTableCommand}">Очистить таблицу</Button>
+                    <Button Command="{Binding ClearTableCommand}" Style="{StaticResource Button_style}">Очистить таблицу</Button>
                 </Grid>
             </Grid>
             <Grid Grid.Column="1" x:Name="Settings__Methods">
@@ -98,7 +101,7 @@
                     <TextBlock HorizontalAlignment="Center">Выберите степень:</TextBlock>
                     <ComboBox ItemsSource="{Binding DegreesArray}" SelectedIndex="{Binding IndexDegree}"></ComboBox>
                 </StackPanel>
-                <Button Grid.Row="2" Command="{Binding CallMethodCommand}">Использовать метод</Button>
+                <Button Grid.Row="2" Command="{Binding CallMethodCommand}" Style="{StaticResource Button_style}">Использовать метод</Button>
             </Grid>
         </Grid>
     </Grid>
