@@ -37,6 +37,8 @@
                     <RowDefinition Height="20px"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition Height="50px"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50px"></RowDefinition>
                     <RowDefinition Height="50px"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" x:Name="Settings__Table">
@@ -46,7 +48,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0"
                                HorizontalAlignment="Center"
-                               VerticalAlignment="Center">Введите количество переменных: </TextBlock>
+                               VerticalAlignment="Center">Количество переменных: </TextBlock>
                     <TextBox Grid.Column="1" x:Name="Rows__Count" 
                              MaxLength="2"
                              MaxHeight="20px"
@@ -72,17 +74,47 @@
                                         <ColumnDefinition Width="115.3px"></ColumnDefinition>
                                         <ColumnDefinition Width="115.3px"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <TextBox Grid.Column="0" Text="{Binding X}"></TextBox>
-                                    <TextBox Grid.Column="1" Text="{Binding Y}"></TextBox>
+                                    <TextBox Grid.Column="0" TextAlignment="Center" Text="{Binding X}"></TextBox>
+                                    <TextBox Grid.Column="1"  TextAlignment="Center" Text="{Binding Y}"></TextBox>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
-                <Grid Grid.Row="3">
-                    <Button Command="{Binding SetTableCommand}" Style="{StaticResource Button_style}">Создать таблицу</Button>
+                <Grid Grid.Row="3" x:Name="Settings_Function">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">Количество коэффициентов: </TextBlock>
+                    <TextBox Grid.Column="1" x:Name="Ratio__Count" 
+                             MaxLength="2"
+                             MaxHeight="20px"
+                             MinWidth="45px"
+                             TextAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Text="{Binding CountOfRatio}"></TextBox>
                 </Grid>
                 <Grid Grid.Row="4">
+                    <ListBox x:Name="List__Ratio" ItemsSource="{Binding RatioList}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="230.6px"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0" TextAlignment="Center"  Text="{Binding Ratio}"></TextBox>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+                <Grid Grid.Row="5">
+                    <Button Command="{Binding SetTableCommand}" Style="{StaticResource Button_style}">Создать таблицу</Button>
+                </Grid>
+                <Grid Grid.Row="6">
                     <Button Command="{Binding ClearTableCommand}" Style="{StaticResource Button_style}">Очистить таблицу</Button>
                 </Grid>
             </Grid>

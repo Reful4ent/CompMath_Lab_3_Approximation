@@ -4,4 +4,5 @@ public interface IGivePoints
 {
     public double[] GetX();
     public double[] GetY();
+    public double[] GetRatios();
 }

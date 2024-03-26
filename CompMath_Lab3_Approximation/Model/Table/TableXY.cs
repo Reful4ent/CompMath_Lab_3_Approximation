@@ -12,11 +12,14 @@ namespace CompMath_Lab3_Approximation.Model
         public double[,] Table { get; private set; }
         
         public static TableXY Instance() => new();
+
+        public double[] RatiosList { get; private set; }
+        
         public bool SetTable(double[] x, double[] y)
         {
             if (x.Length != y.Length)
                 return false;
-            if (!(checkIncrease(x) && CheckDuplicate(x)))
+            if (!(CheckIncrease(x) && CheckDuplicate(x)))
                 return false;
             
             Table = new double[2, x.Length];
@@ -28,7 +31,15 @@ namespace CompMath_Lab3_Approximation.Model
             return true;
         }
 
-        private bool checkIncrease(double[] x)
+        public bool SetRatios(double[] ratios)
+        {
+            if (ratios == null)
+                return false;
+            RatiosList = ratios;
+            return true;
+        }
+
+        private bool CheckIncrease(double[] x)
         {
             for (int i = 1; i < x.Length; i++)
                 if (x[i] < x[i - 1])
@@ -54,6 +65,7 @@ namespace CompMath_Lab3_Approximation.Model
         
         
         public void ClearTable() => Array.Clear(Table, 0, Table.Length);
+        public void ClearRatios() => Array.Clear(RatiosList, 0, RatiosList.Length);
 
         /// <summary>
         /// Возвращает массив X из таблицы XY
@@ -77,6 +89,8 @@ namespace CompMath_Lab3_Approximation.Model
                 Y[i] = Table[1, i];
             return Y;
         }
+
+        public double[] GetRatios() => RatiosList;
 
     }
 }
