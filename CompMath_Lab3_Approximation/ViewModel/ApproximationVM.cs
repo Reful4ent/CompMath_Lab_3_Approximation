@@ -91,25 +91,50 @@ namespace CompMath_Lab3_Approximation.ViewModel
         
         public void SetTable()
         {
-            if (PointsList == null || RatioList == null)
+            if (PointsList == null && RatioList == null)
             {
                 ErrorProgram?.Invoke(0);
                 return;
             }
-            
-            double[] tempX = new double[PointsList.Count];
-            double[] tempY = new double[PointsList.Count];
-            double[] tempRatios = new double[RatioList.Count];
-            for (int i = 0; i < PointsList.Count; i++)
+            else if (PointsList == null && !(RatioList == null))
             {
-                tempX[i] = PointsList[i].X;
-                tempY[i] = PointsList[i].Y;
+                double[] tempRatios = new double[RatioList.Count];
+                for (int i = 0; i < RatioList.Count; i++)
+                    tempRatios[i] = RatioList[i].Ratio;
+                if(!(tableOY.SetRatios(tempRatios)))
+                    ErrorProgram?.Invoke(0);
+                return;
             }
+            else if (!(PointsList == null) && RatioList == null)
+            {
+                double[] tempX = new double[PointsList.Count];
+                double[] tempY = new double[PointsList.Count];
+                for (int i = 0; i < PointsList.Count; i++)
+                {
+                    tempX[i] = PointsList[i].X;
+                    tempY[i] = PointsList[i].Y;
+                }
+                if(!(tableOY.SetTable(tempX, tempY)))
+                    ErrorProgram?.Invoke(0);
+                return;
+            }
+            else
+            {
+                double[] tempX = new double[PointsList.Count];
+                double[] tempY = new double[PointsList.Count];
+                double[] tempRatios = new double[RatioList.Count];
+                for (int i = 0; i < PointsList.Count; i++)
+                {
+                    tempX[i] = PointsList[i].X;
+                    tempY[i] = PointsList[i].Y;
+                }
 
-            for (int i = 0; i < RatioList.Count; i++)
-                tempRatios[i] = RatioList[i].Ratio;
-            if(!(tableOY.SetTable(tempX, tempY) && tableOY.SetRatios(tempRatios)))
-                ErrorProgram?.Invoke(0);
+                for (int i = 0; i < RatioList.Count; i++)
+                    tempRatios[i] = RatioList[i].Ratio;
+                if(!(tableOY.SetTable(tempX, tempY) && tableOY.SetRatios(tempRatios)))
+                    ErrorProgram?.Invoke(0);
+                return;
+            }
         }
         
         /// <summary>
@@ -117,15 +142,31 @@ namespace CompMath_Lab3_Approximation.ViewModel
         /// </summary>
         public Command ClearTableCommand => Command.Create((() =>
         {
-            if (tableOY.Table == null || tableOY.RatiosList == null)
+            if (tableOY.Table == null && tableOY.RatiosList == null)
             {
                 ErrorProgram?.Invoke(1);
                 return;
             }
-            tableOY.ClearTable();
-            tableOY.ClearRatios();
-            CountOfRatio = 0;
-            CountOfElements = 0;
+            else if(!(tableOY.Table == null) && tableOY.RatiosList == null)
+            {
+                tableOY.ClearTable();
+                CountOfElements = 0;
+                return;
+            }
+            else if (tableOY.Table == null && !(tableOY.RatiosList == null))
+            {
+                tableOY.ClearRatios();
+                CountOfRatio = 0;
+                return;
+            }
+            else
+            {
+                tableOY.ClearTable();
+                tableOY.ClearRatios();
+                CountOfRatio = 0;
+                CountOfElements = 0;
+                return;
+            }
         }));
         
         /// <summary>
