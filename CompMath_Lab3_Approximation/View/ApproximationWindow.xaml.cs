@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using CompMath_Lab3_Approximation.ViewModel;
+using ScottPlot;
 
 namespace CompMath_Lab3_Approximation.View
 {
@@ -8,6 +9,7 @@ namespace CompMath_Lab3_Approximation.View
     /// </summary>
     public partial class ApproximationWindow : Window
     {
+        private LinePattern[] _linePatterns = Enum.GetValues<LinePattern>().ToArray();
         public ApproximationWindow()
         {
             InitializeComponent();
