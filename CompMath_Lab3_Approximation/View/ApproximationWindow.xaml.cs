@@ -50,6 +50,7 @@ namespace CompMath_Lab3_Approximation.View
         private void ScotPlotDraw(Func<double, double> func,double[,] table)
         {
             Graphics.Plot.Add.Function(func);
+            Graphics.Plot.Axes.SetLimits(table[0,0],table[0,table.GetLength(1)-1]);
             if(table!=null)
                 for (int i = 0; i < table.GetUpperBound(1)+1; i++)
                     Graphics.Plot.Add.Marker(table[0, i], table[1, i]);
@@ -60,10 +61,15 @@ namespace CompMath_Lab3_Approximation.View
         {
             if(x!=null && y!=null)
             {
-                Graphics.Plot.Add.Scatter(x, y);
+                var myScatter = Graphics.Plot.Add.Scatter(x, y);
+                myScatter.MarkerSize = 1;
                 Graphics.Refresh();
-                for (int i = 0; i < table.GetUpperBound(1)+1; i++)
-                    Graphics.Plot.Add.Marker(table[0, i], table[1, i]);
+                if (table != null)
+                {
+                    for (int i = 0; i < table.GetUpperBound(1)+1; i++)
+                        Graphics.Plot.Add.Marker(table[0, i], table[1, i]);
+                }
+                
             }
         }
         

@@ -5,14 +5,18 @@ namespace CompMath_Lab3_Approximation.Model
 {
     public class SplineMethod
     {
+        private static double[,] splineSystem;
+        private static double[] x;
+        private static double[]  a;
+        private static double[] b;
+        private static double[] c;
+        private static double[] d;
         public static Func<double, double> CubicSplineInterpolation(double[] xp, double[] yp)
         {
-            double[] x= xp;
+            x = xp;
             double[] y = yp;
-            double[] a = y;
-            double[] b;
-            double[] c;
-            double[] d;
+            a = y;
+
 
             int n = x.Length;
             c = new double[n];
@@ -53,8 +57,9 @@ namespace CompMath_Lab3_Approximation.Model
                 return a[j] + b[j] * dx + c[j] * dx * dx + d[j] * dx * dx * dx;
             });
 
-
-
+            
+            
+            
             return SplinePolynomial;
         }
 
@@ -81,6 +86,17 @@ namespace CompMath_Lab3_Approximation.Model
             freeMembers = PassingMethod.PassingIteration(matrix, freeMembers);
             c = freeMembers;
             return;
+        }
+
+        public static double Interpolate(double xF)
+        {
+            int j = 0;
+            while (j < x.Length - 1 && xF > x[j + 1])
+            {
+                j++;
+            }
+            double dx = xF - x[j];
+            return a[j] + b[j] * dx + c[j] * dx * dx + d[j] * dx * dx * dx;
         }
     }
 }

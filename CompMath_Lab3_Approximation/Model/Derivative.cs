@@ -12,4 +12,10 @@ public class Derivative
         Console.WriteLine();
         return table;
     }
+
+    public static double CalculateFirstSplineDerivative(double prevY, double nextY, double step) => (nextY - prevY) / (2 * step);
+
+    public static double CalculateSecondSpineDerivative(double prevTwoY, double nextTwoY, double y, double step) =>
+        (nextTwoY-2*y+prevTwoY) / (4 * Math.Pow(step, 2));
+
 }
