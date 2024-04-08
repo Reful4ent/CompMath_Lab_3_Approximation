@@ -17,6 +17,7 @@ namespace CompMath_Lab3_Approximation.View
             if (DataContext is ApproximationVM approximationVm)
             {
                 approximationVm.DrowAction += ScotPlotDraw;
+                approximationVm.DrowDerivativeAction += ScotPlotDerivativeDrow;
                 approximationVm.ErrorProgram += OpenErrorWindow;
             }
         }
@@ -52,6 +53,18 @@ namespace CompMath_Lab3_Approximation.View
             if(table!=null)
                 for (int i = 0; i < table.GetUpperBound(1)+1; i++)
                     Graphics.Plot.Add.Marker(table[0, i], table[1, i]);
+        }
+
+
+        private void ScotPlotDerivativeDrow(double[] x,double[] y, double[,]table)
+        {
+            if(x!=null && y!=null)
+            {
+                Graphics.Plot.Add.Scatter(x, y);
+                Graphics.Refresh();
+                for (int i = 0; i < table.GetUpperBound(1)+1; i++)
+                    Graphics.Plot.Add.Marker(table[0, i], table[1, i]);
+            }
         }
         
         

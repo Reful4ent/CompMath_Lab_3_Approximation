@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Documents;
 using CompMath_Lab3_Approximation.Model;
 using CompMath_Lab3_Approximation.Model.Methods;
 using CompMath_Lab3_Approximation.ViewModel.Commands;
@@ -13,11 +14,12 @@ namespace CompMath_Lab3_Approximation.ViewModel
         private int countOfRatio = 0;
         private int indexElement = 0;
         private int indexDegree = 0;
-        private int[] Degrees = { 1, 2, 3, 4 };
+        private int[] Degrees = { 1, 2, 3, 4,5, 6, 7, 8 };
         private ObservableCollection<Points> pointsList;
         private ObservableCollection<Ratios> ratioList;
 
         public Action<Func<double, double>, double[,]>? DrowAction;
+        public Action<double[], double[],double[,]>? DrowDerivativeAction;
         public Action<int>? ErrorProgram;
 
         public ApproximationVM()
@@ -188,6 +190,16 @@ namespace CompMath_Lab3_Approximation.ViewModel
                 case 2: DrowAction?.Invoke(SmoothPolMethod.CreateSmooth(tableOY.GetX(),tableOY.GetY(),IndexDegree+1),tableOY.Table); break;
                 case 3: DrowAction?.Invoke(SplineMethod.CubicSplineInterpolation(tableOY.GetX(),tableOY.GetY()),tableOY.Table); break;
                 case 4: DrowAction?.Invoke(RatiosMethod.CreateRation(tableOY.GetRatios()),null); break;
+                case 5:
+                    double[,] temp = new double[tableOY.Table.GetLength(0),tableOY.Table.GetLength(1)];
+                    for (int i = 0; i < tableOY.Table.GetLength(1); i++)
+                    {
+                        temp[0, i] = tableOY.Table[0, i];
+                        temp[1, i] = tableOY.Table[1, i];
+                    }
+                    tableOY.Table = Derivative.CalculateFirstDerivative(tableOY.Table,Math.Pow(10,-(IndexDegree+1)));
+                    DrowDerivativeAction?.Invoke(tableOY.GetX(),tableOY.GetY(),temp);
+                    break;
                 default: break;
             }
         }

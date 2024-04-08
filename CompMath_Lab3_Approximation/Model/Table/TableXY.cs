@@ -2,7 +2,7 @@
 {
     public class TableXY : ITable
     {
-        public double[,] Table { get; private set; }
+        public double[,] Table { get;  set; }
         
         public static TableXY Instance() => new();
 
