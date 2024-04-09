@@ -201,14 +201,26 @@ namespace CompMath_Lab3_Approximation.ViewModel
                     DrowDerivativeAction?.Invoke(tableOY.GetX(),tableOY.GetY(),temp);
                     break;
                 case 6:
-                    DrowAction?.Invoke(SplineMethod.CubicSplineInterpolation(tableOY.GetX(),tableOY.GetY()),tableOY.Table);
+                    SplineMethod.CubicSplineInterpolation(tableOY.GetX(),tableOY.GetY());
+                    double[,] tempTable = new double[2, tableOY.Table.GetLength(1)];
+                    for (int i = 0; i < tableOY.Table.GetLength(1); i++)
+                    {
+                        tempTable[0, i] = tableOY.Table[0, i];
+                        tempTable[1, i] = tableOY.Table[1, i];
+                    }
+                        
                     double x = tableOY.Table[0, 0],
                         step = Math.Pow(10, -2);
+                    
                     int countOfSteps= (int)Math.Ceiling((tableOY.Table[0, tableOY.Table.GetLength(1) - 1] - x) / step);
+                    
                     double[] tempX = new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)], 
+                        tempY = new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)],
                         tempFirstY = new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)], 
                         tempSecondY = new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)];
+                    
                     int index = 0;
+                    
                     while (x<=tableOY.Table[0,tableOY.Table.GetLength(1)-1])
                     {
                         double y = SplineMethod.Interpolate(x),
@@ -220,14 +232,18 @@ namespace CompMath_Lab3_Approximation.ViewModel
                         yPlusTwoSteps = SplineMethod.Interpolate(x+2*step),
                         yMinusTwoSteps = SplineMethod.Interpolate(x - 2 * step),
                         derivSecond = Derivative.CalculateSecondSpineDerivative(yMinusTwoSteps,yPlusTwoSteps,y,step);
+                        
                         if(index == countOfSteps)
                             break;
+                        
+                        tempY[index] = y;
                         tempX[index] = x;
                         tempFirstY[index] = derivFirst;
                         tempSecondY[index] = derivSecond;
                         x += step;
                         index++;
                     }
+                    DrowDerivativeAction?.Invoke(tempX,tempY,tempTable);
                     DrowDerivativeAction?.Invoke(tempX,tempFirstY,null);
                     DrowDerivativeAction?.Invoke(tempX,tempSecondY,null);
                     break;

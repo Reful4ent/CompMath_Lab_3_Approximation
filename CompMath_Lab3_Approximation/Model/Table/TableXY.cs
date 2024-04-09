@@ -12,7 +12,7 @@
         {
             if (x.Length != y.Length)
                 return false;
-            SortElements(ref x,ref y, 0, x.Length-1);
+            SortElements(ref x,ref y);
             if (!(CheckIncrease(x) && CheckDuplicate(ref x,ref y)))
                 return false;
             
@@ -24,35 +24,26 @@
             
             return true;
         }
-
-        private void SortElements(ref double[] x, ref double[]y, int leftIndex,int rightIndex)
+        
+        
+        
+        private void SortElements(ref double[] x, ref double[]y)
         {
-            int i = leftIndex;
-            int j = rightIndex;
-            double xI = x[leftIndex];
-            double yI = y[leftIndex];
-            while (i <= j)
+            for (int j = x.Length - 1; j > 0; j--)
             {
-                while (x[i] < xI)
-                    i++;
-                while (x[j] > xI)
-                    j--;
-                if (i <= j)
+                for (int i = 0; i < j; i++)
                 {
-                    double tempX = x[i];
-                    double tempY = y[i];
-                    x[i] = x[j];
-                    x[j] = tempX;
-                    y[i] = y[j];
-                    y[j] = tempY;
-                    i++;
-                    j--;
+                    if (x[i] > x[i + 1])
+                    {
+                        double temp = x[i];
+                        x[i] = x[i + 1];
+                        x[i + 1] = temp;
+                        temp = y[i];
+                        y[i] = y[i + 1];
+                        y[i + 1] = temp;
+                    }
                 }
             }
-            if(leftIndex < j)
-                SortElements(ref x, ref y,leftIndex, j);
-            if (i < rightIndex)
-                SortElements(ref x, ref y, i, leftIndex);
         }
 
         public bool SetRatios(double[] ratios)
