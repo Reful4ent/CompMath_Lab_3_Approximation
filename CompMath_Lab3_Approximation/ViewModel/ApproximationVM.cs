@@ -210,15 +210,15 @@ namespace CompMath_Lab3_Approximation.ViewModel
                     }
                         
                     double x = tableOY.Table[0, 0],
-                        step = Math.Pow(10, -2);
+                        step = Math.Pow(10, 0);
                     
-                    int countOfSteps= (int)Math.Ceiling((tableOY.Table[0, tableOY.Table.GetLength(1) - 1] - x) / step);
+                    int countOfSteps= (int)Math.Ceiling((tableOY.Table[0, tableOY.Table.GetLength(1) - 1] - x) / step+1);
                     
-                    double[] tempX = new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)],
-                        tempx2 =new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)-2],
-                        tempY = new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)],
-                        tempFirstY = new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)-2], 
-                        tempSecondY = new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)-4];
+                    double[] tempX = new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)+1],
+                        tempx2 =new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)-2+1],
+                        tempY = new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)+1],
+                        tempFirstY = new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)-2+1], 
+                        tempSecondY = new double[(int)Math.Ceiling((tableOY.Table[0,tableOY.Table.GetLength(1)-1]-x)/step)-4+1];
                     
                     int index = 0;
                     
